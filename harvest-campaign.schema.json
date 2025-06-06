@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "A-Z Fisheries Mass Harvesting Campaign",
+  "description": "Schema for organizing mass-scale invasive carp harvesting operations, equipment, funding, and partners.",
+  "type": "object",
+  "properties": {
+    "projectTitle": {
+      "type": "string",
+      "description": "Title of the mass harvesting campaign"
+    },
+    "location": {
+      "type": "string",
+      "description": "Primary area of operations (e.g., Illinois River Basin)"
+    },
+    "campaignStartDate": {
+      "type": "string",
+      "format": "date"
+    },
+    "leadContact": {
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "email": { "type": "string", "format": "email" },
+        "phone": { "type": "string" }
+      },
+      "required": ["name", "email"]
+    },
+    "technologiesUsed": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Innovative tools or tech applied"
+    },
+    "partners": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Agency or NGO partners"
+    },
+    "targetHarvestVolume": {
+      "type": "number",
+      "description": "Total pounds of carp to be harvested"
+    },
+    "fundingSources": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "status": {
+      "type": "string",
+      "enum": ["planning", "active", "paused", "completed"]
+    }
+  },
+  "required": ["projectTitle", "location", "campaignStartDate", "leadContact"]
+}
