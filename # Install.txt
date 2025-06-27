@@ -1,0 +1,22 @@
+# Install TensorFlow
+# pip install tensorflow
+
+import tensorflow as tf
+import pandas as pd
+
+# Load user and product data
+data = pd.read_csv('user_product_data.csv')
+
+# Create a simple collaborative filtering model
+model = tf.keras.Sequential([
+    tf.keras.layers.Embedding(input_dim=5000, output_dim=64),
+    tf.keras.layers.Dense(128, activation='relu'),
+    tf.keras.layers.Dense(1)  # Predict a score
+])
+
+# Compile and train the model
+model.compile(optimizer='adam', loss='mean_squared_error')
+model.fit(data['user_id'], data['product_id'], epochs=10)
+
+# Predict recommendations
+recommendations = model.predict([user_id])
